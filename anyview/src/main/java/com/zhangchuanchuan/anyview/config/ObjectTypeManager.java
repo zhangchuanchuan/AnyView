@@ -12,20 +12,15 @@ import java.util.Map;
 
 public class ObjectTypeManager {
 
-    private static Map<Class, Class<? extends BaseAnyView>> objectClassMap = new HashMap<>();
-    private static SparseArray<Class<? extends BaseAnyView>> sparseArray = new SparseArray<>();
+    public static Map<Class, Class<? extends BaseAnyView>> objectClassMap = new HashMap<>();
 
     static {
         objectClassMap.put(String.class, StringAnyView.class);
     }
 
-    public static BaseAnyView getAnyViewByObject(Object object) {
+    public static BaseAnyView getAnyViewByClass(Class clazz) {
         Class<? extends BaseAnyView> anyViewClass;
-        if (object instanceof Integer) {
-            anyViewClass = sparseArray.get((Integer) object);
-        } else {
-            anyViewClass = objectClassMap.get(object.getClass());
-        }
+        anyViewClass = objectClassMap.get(clazz);
         if (anyViewClass == null) {
             anyViewClass = UnKnowAnyView.class;
         }

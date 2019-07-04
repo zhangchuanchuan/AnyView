@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ObjectTypeManagerExtral.init();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(android.R.id.content, new MainFragment(), "main");
         fragmentTransaction.commitAllowingStateLoss();
